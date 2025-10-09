@@ -10,22 +10,33 @@ function App() {
   )
 }
 function LightBulb(){
+  const [bulbOn, setBulbOn] = useState(true);
+
  return <div>
-    <BulbState/>
-    <ToggleBulbState/>
+    <BulbState bulbOn={bulbOn} />
+    <ToggleBulbState bulbOn={bulbOn} setBulbOn={setBulbOn} />
 
   </div>
 }
 
-function BulbState(){ //return img bulb on/off
- const [bulbOn, setBulbOn] = useState(true);
+function BulbState({bulbOn}){ //return img bulb on/off
    return <div>
     { bulbOn ? "bulb on" : "bulb off"}
    </div>
 }
-function ToggleBulbState(){
+function ToggleBulbState({bulbOn,setBulbOn}){
+
+  function toggle(){
+    setBulbOn(!bulbOn) // set the bulb of what oppo of bulbON
+    /*  if(currentState ==true){
+    return false
+    }else{return true
+    }    OR   setBulbOn(currentState => !currentState) 
+    */
+    
+  }
 return <div>
-    <button>Toggle the bulb</button>
+    <button onClick={toggle}>Toggle the bulb</button>
   </div>
 }
 export default App
